@@ -43,7 +43,7 @@ class Bst(object):
         self.dright = 1
 
     def insert(self, val):
-        if not val in self.list:
+        if val not in self.list:
             count = 1
             if not self.top:
                 self.top = Node(val)
@@ -55,7 +55,7 @@ class Bst(object):
                             current.left = Node(val)
                             break
                         current = current.left
-                    elif val > current.data:
+                    else:
                         if current.right is None:
                             current.right = Node(val)
                             break
