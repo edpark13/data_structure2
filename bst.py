@@ -1,7 +1,10 @@
+#! /usr/bin/env python
+
 import random
 
 class Node(object):
     def __init__(self, data, left=None, right=None):
+        """Creates a node for the Bst class"""
         self.data = data
         self.left = left
         self.right = right
@@ -36,6 +39,7 @@ class Node(object):
 
 class Bst(object):
     def __init__(self):
+        """Initialize a binary search tree"""
         self.top = None
         self.list = []
         self.depth = 0
@@ -43,7 +47,9 @@ class Bst(object):
         self.dright = 1
 
     def insert(self, val):
-        if not val in self.list:
+        """Insert a Node into the binary tree and tracks the
+        depth of the right and left branches"""
+        if val not in self.list:
             count = 1
             if not self.top:
                 self.top = Node(val)
@@ -55,7 +61,7 @@ class Bst(object):
                             current.left = Node(val)
                             break
                         current = current.left
-                    elif val > current.data:
+                    else:
                         if current.right is None:
                             current.right = Node(val)
                             break
@@ -71,15 +77,19 @@ class Bst(object):
             self.list.append(val)
 
     def contains(self, val):
+        """Return a boolean value if value currently exits in the tree"""
         return val in self.list
 
     def size(self):
+        """Return the current number of items in the tree"""
         return len(self.list)
 
     def depth(self):
+        """Return the depth of the longest branch"""
         return self.depth
 
     def balance(self):
+        """Determins if the right is deeper than the left branch"""
         return self.dright - self.dleft
 
 
@@ -95,3 +105,5 @@ if __name__ == '__main__':
     dot_graph = tree.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)
+    #Because the search funtion uses a list look up the look up speed
+    #will be a O(n)
