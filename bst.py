@@ -91,6 +91,7 @@ if __name__ == '__main__':
     tree.insert(6)
     tree.insert(9)
     tree.insert(3)
-    print 'before'
-    print tree.top.get_dot()
-    print 'after'
+    import subprocess
+    dot_graph = tree.top.get_dot()
+    t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
+    t.communicate(dot_graph)
