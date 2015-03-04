@@ -11,15 +11,15 @@ class Bst(object):
         self.top = None
         self.list = []
         self.depth = 0
-        self.dleft = 0
-        self.dright = 0
+        self.dleft = 1
+        self.dright = 1
 
     def insert(self, val):
         if not val in self.list:
+            count = 1
             if not self.top:
                 self.top = Node(val)
             else:
-                count = 1
                 current = self.top
                 while current:
                     if val < current.data:
@@ -33,6 +33,7 @@ class Bst(object):
                             break
                         current = current.right
                     count += 1
+                count += 1
             if count > self.depth:
                 self.depth = count
             if val < self.top.data and count > self.dleft:
@@ -45,7 +46,7 @@ class Bst(object):
         return val in self.list
 
     def size(self):
-        return self.list.size()
+        return len(self.list)
 
     def depth(self):
         return self.depth
@@ -55,9 +56,9 @@ class Bst(object):
 
     def get_dot(self):
         """return the tree with root 'self' as a dot graph for visualization"""
-        return "digraph G{\n%s}" % ("" if self.data is None else (
+        return "digraph G{\n%s}" % ("" if self.top is None else (
             "\t%s;\n%s\n" % (
-                self.data,
+                self.top,
                 "\n".join(self._get_dot())
             )
         ))
@@ -80,3 +81,15 @@ class Bst(object):
             r = random.randint(0, 1e9)
             yield "\tnull%s [shape=point];" % r
             yield "\t%s -> null%s;" % (self.data, r)
+
+
+if __name__ == '__main__':
+    tree = Bst()
+    tree.insert(5)
+    tree.insert(7)
+    tree.insert(8)
+    tree.insert(6)
+    tree.insert(9)
+    tree.insert(3)
+    tree.get_dot()
+
