@@ -41,7 +41,7 @@ class Bst(object):
     def __init__(self):
         """Initialize a binary search tree"""
         self.top = None
-        self.list = []
+        self.set = set()
         self.depth = 0
         self.dleft = 1
         self.dright = 1
@@ -49,7 +49,7 @@ class Bst(object):
     def insert(self, val):
         """Insert a Node into the binary tree and tracks the
         depth of the right and left branches"""
-        if val not in self.list:
+        if val not in self.set:
             count = 1
             if not self.top:
                 self.top = Node(val)
@@ -74,15 +74,15 @@ class Bst(object):
                 self.dleft = count
             elif val > self.dright and count > self.dright:
                 self.dright = count
-            self.list.append(val)
+            self.set.add(val)
 
     def contains(self, val):
         """Return a boolean value if value currently exits in the tree"""
-        return val in self.list
+        return val in self.set
 
     def size(self):
         """Return the current number of items in the tree"""
-        return len(self.list)
+        return len(self.set)
 
     def depth(self):
         """Return the depth of the longest branch"""
@@ -90,7 +90,7 @@ class Bst(object):
 
     def balance(self):
         """Determins if the right is deeper than the left branch"""
-        return self.dright - self.dleft
+        return self.dleft - self.dright
 
 
 if __name__ == '__main__':
@@ -105,5 +105,5 @@ if __name__ == '__main__':
     dot_graph = tree.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)
-    #Because the search funtion uses a list look up the look up speed
-    #will be a O(n)
+    #Because the search funtion uses a set look up the look up speed
+    #will be a O(1)
