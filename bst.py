@@ -89,8 +89,29 @@ class Bst(object):
         return self.depth
 
     def balance(self):
-        """Determins if the right is deeper than the left branch"""
+        """Determines if the right is deeper than the left branch"""
         return self.dleft - self.dright
+
+    def in_order(self):
+        l = self.in_order_helper(self.top, [])
+        for num in l:
+            yield num
+
+    def in_order_helper(self, current, l):
+        if current:
+            self.in_order_helper(current.left, l)
+            l.append(current.data)
+            self.in_order_helper(current.right, l)
+        # yield current.data
+        return l
+    def pre_order(self):
+        pass
+
+    def post_order(self):
+        pass
+
+    def breadth_first(self):
+        pass
 
 
 if __name__ == '__main__':
