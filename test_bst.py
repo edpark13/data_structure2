@@ -18,6 +18,7 @@ def test_insert(empty_tree):
     a.insert(6)
     a.insert(9)
     assert a.top.data == 5
+    assert a.size() == 5
     a.insert(9)
     #test that a duplicate value does not get added
     assert a.size() == 5
