@@ -43,8 +43,8 @@ class Bst(object):
         self.top = None
         self.set = set()
         self.depth = 0
-        self.dleft = 0
-        self.dright = 0
+        self.dleft = 1
+        self.dright = 1
 
     def insert(self, val):
         """Insert a Node into the binary tree and tracks the
@@ -70,10 +70,10 @@ class Bst(object):
                 count += 1
             if count > self.depth:
                 self.depth = count
-            if val < self.top.data and count - 1 > self.dleft:
-                self.dleft = count - 1
-            elif val > self.dright and count - 1 > self.dright:
-                self.dright = count - 1
+            if val < self.top.data and count > self.dleft:
+                self.dleft = count
+            elif val > self.dright and count > self.dright:
+                self.dright = count
             self.set.add(val)
 
     def contains(self, val):
@@ -90,7 +90,7 @@ class Bst(object):
 
     def balance(self):
         """Determins if the right is deeper than the left branch"""
-        return self.dright - self.dleft
+        return self.dleft - self.dright
 
 
 if __name__ == '__main__':

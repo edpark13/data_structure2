@@ -28,11 +28,11 @@ def test_depth(populated_tree):
 
 
 def test_balance(populated_tree):
-    assert populated_tree.balance() == 2
+    assert populated_tree.balance() == -2
     b = Bst()
     b.insert(5)
     b.insert(1)
-    assert b.balance() == -1
+    assert b.balance() == 1
 
 
 def test_containts(populated_tree):
