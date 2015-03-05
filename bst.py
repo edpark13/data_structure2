@@ -151,8 +151,6 @@ class Bst(object):
             if node.right is not None:
                 q.append(node.right)
 
-
-
 if __name__ == '__main__':
     tree = Bst()
     tree.insert(5)
