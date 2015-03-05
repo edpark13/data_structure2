@@ -54,6 +54,12 @@ def test_pre_order(populated_tree):
     assert next(gen) == 7
     assert next(gen) == 6
 
+def test_post_order(populated_tree):
+    gen = populated_tree.post_order()
+    assert next(gen) == 3
+    assert next(gen) == 6
+    assert next(gen) == 9
+
 
 def test_breadth_first(populated_tree):
     gen = populated_tree.breadth_first()

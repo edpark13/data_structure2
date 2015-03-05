@@ -38,6 +38,7 @@ class Node(object):
             yield "\t%s -> null%s;" % (self.data, r)
 
 class Bst(object):
+    top = None
     def __init__(self):
         """Initialize a binary search tree"""
         self.top = None
@@ -45,6 +46,8 @@ class Bst(object):
         self.depth = 0
         self.dleft = 1
         self.dright = 1
+        global top
+        top = self.top
 
     def insert(self, val):
         """Insert a Node into the binary tree and tracks the
@@ -93,11 +96,13 @@ class Bst(object):
         return self.dleft - self.dright
 
     def in_order(self):
+        """Return a generator of the values using in order traversal"""
         l = self.in_order_helper(self.top, [])
         for num in l:
             yield num
 
     def in_order_helper(self, current, l):
+        """With the top node iterativally call other nodes in order traversal"""
         if current:
             self.in_order_helper(current.left, l)
             l.append(current.data)
@@ -106,12 +111,13 @@ class Bst(object):
         return l
 
     def pre_order(self):
+        """Return a generator of the values using pre order traversal"""
         l = self.pre_order_helper(self.top, [])
-        print l
         for num in l:
             yield num
 
     def pre_order_helper(self, current, l):
+        """With the top node iterativally call other nodes pre order traversal"""
         if current:
             l.append(current.data)
             self.pre_order_helper(current.left, l)
@@ -120,9 +126,21 @@ class Bst(object):
         return l
 
     def post_order(self):
-        pass
+        """Return a generator of the values using post order traversal"""
+        l = self.post_order_helper(self.top, [])
+        for num in l:
+            yield num
 
+    def post_order_helper(self, current, l):
+        """With the top node iterativally call other nodes post order traversal"""
+        if current:
+            self.post_order_helper(current.left, l)
+            self.post_order_helper(current.right, l)
+            l.append(current.data)
+        # yield current.data
+        return l
     def breadth_first(self):
+        """Return a generator of the values using breadth first traversal"""
         q = []
         q.append(self.top)
         while q != []:
