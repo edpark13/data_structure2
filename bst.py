@@ -97,48 +97,47 @@ class Bst(object):
 
     def in_order(self):
         """Return a generator of the values using in order traversal"""
-        l = self.in_order_helper(self.top, [])
-        for num in l:
-            yield num
+        for element in self.in_order_helper(self.top):
+            yield element
 
-    def in_order_helper(self, current, l):
+
+    def in_order_helper(self, current):
         """With the top node iterativally call other nodes in order traversal"""
         if current:
-            self.in_order_helper(current.left, l)
-            l.append(current.data)
-            self.in_order_helper(current.right, l)
-        # yield current.data
-        return l
+            for i in self.in_order_helper(current.left):
+                yield i
+            yield current.data
+            for i in self.in_order_helper(current.right):
+                yield i
 
     def pre_order(self):
         """Return a generator of the values using pre order traversal"""
-        l = self.pre_order_helper(self.top, [])
-        for num in l:
-            yield num
+        for element in self.pre_order_helper(self.top):
+            yield element
 
-    def pre_order_helper(self, current, l):
+    def pre_order_helper(self, current):
         """With the top node iterativally call other nodes pre order traversal"""
         if current:
-            l.append(current.data)
-            self.pre_order_helper(current.left, l)
-            self.pre_order_helper(current.right, l)
-        # yield current.data
-        return l
+            yield current.data
+            for i in self.pre_order_helper(current.left):
+                yield i
+            for i in self.pre_order_helper(current.right):
+                yield i
 
     def post_order(self):
         """Return a generator of the values using post order traversal"""
-        l = self.post_order_helper(self.top, [])
-        for num in l:
-            yield num
+        for element in self.post_order_helper(self.top):
+            yield element
 
-    def post_order_helper(self, current, l):
+    def post_order_helper(self, current):
         """With the top node iterativally call other nodes post order traversal"""
         if current:
-            self.post_order_helper(current.left, l)
-            self.post_order_helper(current.right, l)
-            l.append(current.data)
-        # yield current.data
-        return l
+            for i in self.post_order_helper(current.left):
+                yield i
+            for i in self.post_order_helper(current.right):
+                yield i
+            yield current.data
+
     def breadth_first(self):
         """Return a generator of the values using breadth first traversal"""
         q = []
