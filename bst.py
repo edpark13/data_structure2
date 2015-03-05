@@ -104,14 +104,35 @@ class Bst(object):
             self.in_order_helper(current.right, l)
         # yield current.data
         return l
+
     def pre_order(self):
-        pass
+        l = self.pre_order_helper(self.top, [])
+        print l
+        for num in l:
+            yield num
+
+    def pre_order_helper(self, current, l):
+        if current:
+            l.append(current.data)
+            self.pre_order_helper(current.left, l)
+            self.pre_order_helper(current.right, l)
+        # yield current.data
+        return l
 
     def post_order(self):
         pass
 
     def breadth_first(self):
-        pass
+        q = []
+        q.append(self.top)
+        while q != []:
+            node = q.pop(0)
+            yield node.data
+            if node.left is not None:
+                q.append(node.left)
+            if node.right is not None:
+                q.append(node.right)
+
 
 
 if __name__ == '__main__':

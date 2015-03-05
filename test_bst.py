@@ -40,13 +40,31 @@ def test_containts(populated_tree):
     assert populated_tree.contains(9)
     assert populated_tree.contains(2) is False
 
+
 def test_in_order(populated_tree):
     gen = populated_tree.in_order()
     assert next(gen) == 3
     assert next(gen) == 5
 
 
+def test_pre_order(populated_tree):
+    gen = populated_tree.pre_order()
+    assert next(gen) == 5
+    assert next(gen) == 3
+    assert next(gen) == 7
+    assert next(gen) == 6
 
+
+def test_breadth_first(populated_tree):
+    gen = populated_tree.breadth_first()
+    assert next(gen) == 5
+    assert next(gen) == 3
+    assert next(gen) == 7
+
+
+##################################
+# Testing Fixtures
+##################################
 @pytest.fixture(scope='function')
 def populated_tree():
     tree = Bst()
