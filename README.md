@@ -14,3 +14,4 @@ three depth first. The depth first methods are as follows: pre-order
 post-order and in-order.
 http://en.wikipedia.org/wiki/Tree_traversal#In-order_.28symmetric.29
 
+https://travis-ci.org/edpark13/data_structure2.svg?branch=bst
