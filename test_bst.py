@@ -25,8 +25,15 @@ def test_insert(empty_tree):
 
 
 def test_depth(populated_tree):
-    assert populated_tree.depth == 4
+    assert populated_tree.depth() == 4
 
+def test_depth_empty(empty_tree):
+    assert empty_tree.depth() is None
+
+def test_depth_one():
+    b = Bst()
+    b.insert(100)
+    assert b.depth() == 1
 
 def test_balance(populated_tree):
     assert populated_tree.balance() == -2
