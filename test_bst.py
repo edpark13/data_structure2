@@ -69,8 +69,14 @@ def test_breadth_first(populated_tree):
 
 
 def test_deletion(populated_tree):
-    gen = populated_tree.delete(3)
-    assert True
+    gen = populated_tree.delete(7)
+    import subprocess
+    dot_graph = gen.top.get_dot()
+    t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
+    t.communicate(dot_graph)
+
+def test_delete_empty(empty_tree):
+    assert empty_tree.delete(1234) is None
 
 
 ##################################
