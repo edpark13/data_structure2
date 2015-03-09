@@ -68,6 +68,11 @@ def test_breadth_first(populated_tree):
     assert next(gen) == 7
 
 
+def test_deletion(populated_tree):
+    gen = populated_tree.delete(3)
+    assert True
+
+
 ##################################
 # Testing Fixtures
 ##################################

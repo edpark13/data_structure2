@@ -3,11 +3,12 @@
 import random
 
 class Node(object):
-    def __init__(self, data, left=None, right=None):
+    def __init__(self, data, left=None, right=None, parent=None):
         """Creates a node for the Bst class"""
         self.data = data
         self.left = left
         self.right = right
+        self.parent = parent
 
     def get_dot(self):
         """return the tree with root 'self' as a dot graph for visualization"""
@@ -61,12 +62,12 @@ class Bst(object):
                 while current:
                     if val < current.data:
                         if current.left is None:
-                            current.left = Node(val)
+                            current.left = Node(val, parent=current)
                             break
                         current = current.left
                     else:
                         if current.right is None:
-                            current.right = Node(val)
+                            current.right = Node(val, parent=current)
                             break
                         current = current.right
                     count += 1
@@ -151,6 +152,31 @@ class Bst(object):
             if node.right is not None:
                 q.append(node.right)
 
+    def delete(self, value):
+        """Remove a value from a tree and updates the tree with the correct
+        values"""
+        if value not in self.set:
+            return None
+        # find the node with the value
+        current = self.top
+        while current.data != value:
+            if value < current.data:
+                current = current.left
+            else:
+                current = current.right
+        # current = the value we passed in
+
+
+
+
+        
+        if current.left is None and current.right is None:
+            if current.parent.data > current.data:
+                current.parent.right = None
+            else:
+                current.parent.left = None
+        elif current.left is None:
+            current.parent = current.right
 
 
 if __name__ == '__main__':
