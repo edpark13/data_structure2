@@ -10,6 +10,16 @@ class Node(object):
         self.right = right
         self.parent = parent
 
+    def depth(self, depth=1):
+        if self.left and self.right:
+            return max(self.left.depth(depth+1), self.right.depth(depth+1))
+        elif self.left:
+            return self.left.depth(depth+1)
+        elif self.right:
+            return self.right.depth(depth+1)
+        else:
+            return depth
+
     def delete(self, key):
         """ delete the node with the given key and return the
         root node of the tree """
@@ -82,17 +92,11 @@ class Bst(object):
         """Initialize a binary search tree"""
         self.top = None
         self.set = set()
-        self.depth = 0
-        self.dleft = 1
-        self.dright = 1
-        global top
-        top = self.top
 
     def insert(self, val):
         """Insert a Node into the binary tree and tracks the
         depth of the right and left branches"""
         if val not in self.set:
-            count = 1
             if not self.top:
                 self.top = Node(val)
             else:
@@ -108,14 +112,6 @@ class Bst(object):
                             current.right = Node(val, parent=current)
                             break
                         current = current.right
-                    count += 1
-                count += 1
-            if count > self.depth:
-                self.depth = count
-            if val < self.top.data and count > self.dleft:
-                self.dleft = count
-            elif val > self.dright and count > self.dright:
-                self.dright = count
             self.set.add(val)
 
     def contains(self, val):
@@ -126,16 +122,19 @@ class Bst(object):
         """Return the current number of items in the tree"""
         return len(self.set)
 
-    def depth(self, depth):
+    def depth(self):
         """Return the depth of the longest branch"""
-        while self.top.left:
-            self.left = self.left.left
-
-        return self.depth
+        if self.top:
+            return self.top.depth()
 
     def balance(self):
         """Determines if the right is deeper than the left branch"""
-        return self.dleft - self.dright
+        if self.top.left and self.top.right:
+            return self.top.left.depth(2) - self.top.right.depth(2)
+        elif self.top.left:
+            return self.top.left.depth(2) - 1
+        elif self.top.right:
+            return 1 - self.top.right.depth(2)
 
     def in_order(self):
         """Return a generator of the values using in order traversal"""
