@@ -11,50 +11,42 @@ class Node(object):
         self.parent = parent
 
     def delete(self, key):
-        """ delete the node with the given key and return the 
-        root node of the tree """        
+        """ delete the node with the given key and return the
+        root node of the tree """
         if self.data == key:
             # found the node we need to delete
-            if self.right and self.left: 
-                # get the successor node and its parent 
-                [psucc, succ] = self.right._findMin(self)
-                # splice out the successor
-                # (we need the parent to do this) 
-                if psucc.left == succ:
-                    psucc.left = succ.right
+            if self.right and self.left:
+                # get the successor node
+                succ = self.right._findMin()
+                if succ.parent.left == succ:
+                    succ.parent.left = succ.right
                 else:
-                    psucc.right = succ.right
+                    succ.parent.right = succ.right
                 # reset the left and right children of the successor
                 succ.left = self.left
                 succ.right = self.right
-                return succ                
+                return succ
             else:
-                # "easier" case
                 if self.left:
                     return self.left    # promote the left subtree
                 else:
-                    return self.right   # promote the right subtree 
+                    return self.right   # promote the right subtree
         else:
             if self.data > key:          # key should be in the left subtree
                 if self.left:
                     self.left = self.left.delete(key)
-                # else the key is not in the tree 
-            else:                       # key should be in the right subtree
+                # else the key is not in the tree
+            else:
                 if self.right:
                     self.right = self.right.delete(key)
         return self
-    
-    def _findMin(self, parent):
-        """ return the minimum node in the current tree and its parent """
 
-        # we use an ugly trick: the parent node is passed in as an argument
-        # so that eventually when the leftmost child is reached, the 
-        # call can return both the parent to the successor and the successor
-        
+    def _findMin(self):
+        """ return the minimum node in the current tree and its parent """
         if self.left:
-            return self.left._findMin(self)
+            return self.left._findMin()
         else:
-            return [parent, self]
+            return self
 
     def get_dot(self):
         """return the tree with root 'self' as a dot graph for visualization"""
@@ -134,8 +126,11 @@ class Bst(object):
         """Return the current number of items in the tree"""
         return len(self.set)
 
-    def depth(self):
+    def depth(self, depth):
         """Return the depth of the longest branch"""
+        while self.top.left:
+            self.left = self.left.left
+
         return self.depth
 
     def balance(self):
@@ -186,6 +181,7 @@ class Bst(object):
             l.append(current.data)
         # yield current.data
         return l
+
     def breadth_first(self):
         """Return a generator of the values using breadth first traversal"""
         q = []
@@ -197,40 +193,37 @@ class Bst(object):
                 q.append(node.left)
             if node.right is not None:
                 q.append(node.right)
- 
+
     def delete(self, value):
         """Remove a value from a tree and updates the tree with the correct
         values"""
-        # if value not in self.set:
-        #     return None
-        # # find the node with the value
-        # current = self.top
-        # while current.data != value:
-        #     if value < current.data:
-        #         current = current.left
-        #     else:
-        #         current = current.right
-        # # current = the value we passed in        
-        # if current.left is None and current.right is None:
-        #     if current.parent.data > current.data:
-        #         current.parent.right = None
-        #     else:
-        #         current.parent.left = None
-        # elif current.left is None:
-        #     current.parent = current.right
         if self.top:
             self.top.delete(value)
+            self.set.remove(value)
 
 
 if __name__ == '__main__':
     tree = Bst()
-    tree.insert(5)
-    tree.insert(7)
-    tree.insert(8)
-    tree.insert(6)
-    tree.insert(9)
-    tree.insert(3)
-    tree.delete(7)
+    tree.insert(100)
+    tree.insert(14)
+    tree.insert(25)
+    tree.insert(77)
+    tree.insert(98)
+    tree.insert(120)
+    tree.insert(33)
+    tree.insert(145)
+    tree.insert(66)
+    tree.insert(111)
+    tree.insert(200)
+    tree.insert(22)
+    tree.insert(188)
+    tree.insert(77)
+    tree.insert(101)
+    tree.insert(84)
+    tree.insert(123)
+    tree.insert(140)
+    tree.insert(20)
+    tree.insert(50)
     import subprocess
     dot_graph = tree.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)

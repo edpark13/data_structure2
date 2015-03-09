@@ -69,11 +69,19 @@ def test_breadth_first(populated_tree):
 
 
 def test_deletion(populated_tree):
-    gen = populated_tree.delete(7)
-    import subprocess
-    dot_graph = gen.top.get_dot()
-    t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
-    t.communicate(dot_graph)
+    """Test deletion of a value"""
+    populated_tree.delete(7)
+    assert populated_tree.top.right.data == 8
+    assert 7 not in populated_tree.set
+
+
+def test_deletion_bt(big_ass_tree):
+    """Test deletion of a value"""
+    big_ass_tree.delete(120)
+    assert big_ass_tree.top.right.data == 123
+    big_ass_tree.delete(25)
+    assert big_ass_tree.top.left.right.data == 33
+
 
 def test_delete_empty(empty_tree):
     assert empty_tree.delete(1234) is None
@@ -97,4 +105,30 @@ def populated_tree():
 @pytest.fixture(scope='function')
 def empty_tree():
     tree = Bst()
+    return tree
+
+
+@pytest.fixture(scope='function')
+def big_ass_tree():
+    tree = Bst()
+    tree.insert(100)
+    tree.insert(14)
+    tree.insert(25)
+    tree.insert(77)
+    tree.insert(98)
+    tree.insert(120)
+    tree.insert(33)
+    tree.insert(145)
+    tree.insert(66)
+    tree.insert(111)
+    tree.insert(200)
+    tree.insert(22)
+    tree.insert(188)
+    tree.insert(77)
+    tree.insert(101)
+    tree.insert(84)
+    tree.insert(123)
+    tree.insert(140)
+    tree.insert(20)
+    tree.insert(50)
     return tree
