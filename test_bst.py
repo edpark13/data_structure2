@@ -91,22 +91,28 @@ def test_deletion_bt(big_ass_tree):
 
 
 def test_delete_empty(empty_tree):
+    """Confirm that a delted node is not tracking in the tree"""
     assert empty_tree.delete(1234) is None
 
 
 def test_balance_tree(populated_tree):
+    """Test that a rebalanced tree has a depth equal to
+    the binary power plus one. This ensures balance"""
     a = populated_tree.balance_self()
     assert a.balance() == 0
     assert a.depth() == 3
 
 
 def test_balance_bigtree(big_ass_tree):
+    """duplicate test with a bigger list
+    This ensures balance"""
     a = big_ass_tree.balance_self()
     assert a.balance() == 0
     assert a.depth() == 5
 
 
 def test_balance_tree_zero(empty_tree):
+    """Test balance for a empty tree"""
     a = empty_tree.balance_self()
     assert a is None
 

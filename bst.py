@@ -200,6 +200,7 @@ class Bst(object):
             self.set.remove(value)
 
     def balance_helper(self, l, new_tree):
+        """Helper function for balancing a tree"""
         if len(l) == 1:
             new_tree.insert(l[0])
         elif len(l) == 0:
@@ -214,8 +215,11 @@ class Bst(object):
             return new_tree
 
     def balance_self(self):
+        """Balance a tree after nodes are inserted"""
         new_tree = Bst()
         l = sorted(self.set)
+        if -1 <= new_tree.balance <= 1:
+            return 'Tree already balanced'
         return self.balance_helper(l, new_tree)
 
 
@@ -229,5 +233,5 @@ if __name__ == '__main__':
     dot_graph = a.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)
-    #Because the search funtion uses a set look up the look up speed
-    #will be a O(1)
+    # Because the search funtion uses a set look up the look up speed
+    # will be a O(1)
