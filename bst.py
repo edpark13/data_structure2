@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import random
 
 class Node(object):
@@ -222,30 +221,11 @@ class Bst(object):
 
 if __name__ == '__main__':
     tree = Bst()
-    tree.insert(100)
-    tree.insert(14)
-    tree.insert(25)
-    tree.insert(77)
-    tree.insert(98)
-    tree.insert(120)
-    tree.insert(33)
-    tree.insert(145)
-    tree.insert(66)
-    tree.insert(111)
-    tree.insert(200)
-    tree.insert(22)
-    tree.insert(188)
-    tree.insert(77)
-    tree.insert(101)
-    tree.insert(84)
-    tree.insert(123)
-    tree.insert(140)
-    tree.insert(20)
-    tree.insert(50)
+    for i in range(513):
+        r = random.randint(0, 1000)
+        tree.insert(r)
     import subprocess
     a = tree.balance_self()
-    a.set
-    tree.set
     dot_graph = a.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)
