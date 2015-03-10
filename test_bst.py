@@ -96,7 +96,19 @@ def test_delete_empty(empty_tree):
 
 def test_balance_tree(populated_tree):
     a = populated_tree.balance_self()
-    a.top.get_dot()
+    assert a.balance() == 0
+    assert a.depth() == 3
+
+
+def test_balance_bigtree(big_ass_tree):
+    a = big_ass_tree.balance_self()
+    assert a.balance() == 0
+    assert a.depth() == 5
+
+
+def test_balance_tree_zero(empty_tree):
+    a = empty_tree.balance_self()
+    assert a is None
 
 
 ##################################

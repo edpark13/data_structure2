@@ -200,7 +200,24 @@ class Bst(object):
             self.top.delete(value)
             self.set.remove(value)
 
+    def balance_helper(self, l, new_tree):
+        if len(l) == 1:
+            new_tree.insert(l[0])
+        elif len(l) == 0:
+            return None
+        else:
+            half = len(l)/2
+            new_tree.insert(l[half])
+            left = l[0:half]
+            right = l[half:]
+            self.balance_helper(left, new_tree)
+            self.balance_helper(right, new_tree)
+            return new_tree
 
+    def balance_self(self):
+        new_tree = Bst()
+        l = sorted(self.set)
+        return self.balance_helper(l, new_tree)
 
 
 if __name__ == '__main__':
@@ -226,8 +243,10 @@ if __name__ == '__main__':
     tree.insert(20)
     tree.insert(50)
     import subprocess
-    tree = tree.balance_self()
-    dot_graph = tree.top.get_dot()
+    a = tree.balance_self()
+    a.set
+    tree.set
+    dot_graph = a.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)
     #Because the search funtion uses a set look up the look up speed
