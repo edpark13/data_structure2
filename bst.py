@@ -201,19 +201,30 @@ class Bst(object):
             self.set.remove(value)
 
     def balance_helper(self, l, new_tree):
-        half = len(l)/2
-        print half
-        if len(l) != 0:
-            new_tree.inset(half)
-            left = l[0:half]
         if len(l) == 1:
             new_tree.insert(l[0])
-
-        return new_tree
+        elif len(l) == 0:
+            return
+        else:
+            half = len(l)/2
+            new_tree.insert(l[half])
+            left = l[0:half]
+            right = l[half:0]
+            self.balance_helper(left, new_tree)
+            self.balance_helper(right, new_tree)
+            return new_tree
 
     def balance_self(self):
         new_tree = Bst()
         l = sorted(self.set)
+        # while len(l) != 0:
+        #     node = l.pop(len(l)/2)
+        #     print node
+        #     new_tree.insert(node)
+        #     if len(l) > 2:
+        #         new_tree.insert(l[0])
+        #         new_tree.insert(l[-1])
+        # return new_tree
         return self.balance_helper(l, new_tree)
 
 # new_tree.insert(half)
@@ -244,6 +255,7 @@ if __name__ == '__main__':
     tree.insert(20)
     tree.insert(50)
     import subprocess
+    tree = tree.balance_self()
     dot_graph = tree.top.get_dot()
     t = subprocess.Popen(["dot", "-Tpng"], stdin=subprocess.PIPE)
     t.communicate(dot_graph)

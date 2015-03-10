@@ -96,8 +96,7 @@ def test_delete_empty(empty_tree):
 
 def test_balance_tree(populated_tree):
     a = populated_tree.balance_self()
-    print a.set
-    assert True
+    a.top.get_dot()
 
 
 ##################################
