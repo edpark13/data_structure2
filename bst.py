@@ -200,6 +200,26 @@ class Bst(object):
             self.top.delete(value)
             self.set.remove(value)
 
+    def balance_helper(self, l, new_tree):
+        half = len(l)/2
+        print half
+        if len(l) != 0:
+            new_tree.inset(half)
+            left = l[0:half]
+        if len(l) == 1:
+            new_tree.insert(l[0])
+
+        return new_tree
+
+    def balance_self(self):
+        new_tree = Bst()
+        l = sorted(self.set)
+        return self.balance_helper(l, new_tree)
+
+# new_tree.insert(half)
+# left = l[0:half]
+# right = l[half:0]
+
 
 if __name__ == '__main__':
     tree = Bst()
