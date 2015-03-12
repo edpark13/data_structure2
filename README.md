@@ -14,3 +14,10 @@ three depth first. The depth first methods are as follows: pre-order
 post-order and in-order.
 http://en.wikipedia.org/wiki/Tree_traversal#In-order_.28symmetric.29
 
+Hash Table
+Created a simple hash table which stores key and value pairs as a
+list of lists. The hashing method is a simple summation of values
+for input into a list. The hashing method is a sub module of the class
+and can be easily replaced with a more prefect method at a later time.
+
+
