@@ -4,7 +4,7 @@ import time
 
 
 def timed_func(func):
-    """Decorator for timing our traversal methods."""
+    """Decorator for timing our insertion sort methods."""
     def timed(*args, **kwargs):
         start = time.time()
         result = func(*args, **kwargs)
@@ -15,6 +15,7 @@ def timed_func(func):
 
 @timed_func
 def insertion_sort(lis):
+    """Sorts a given list using an insert method"""
     for x in xrange(len(lis)):
         i = x
         while i > 0 and lis[i-1] > lis[i]:
@@ -24,6 +25,7 @@ def insertion_sort(lis):
 
 
 def sorted_list(Number_of_items=100):
+    """Creats a list of numbers around the given input"""
     lis = []
     for i in range(Number_of_items):
         lis.append(i)
@@ -31,6 +33,7 @@ def sorted_list(Number_of_items=100):
 
 
 def reverse_sorted_list(Number_of_items=100):
+    """Creats a worst case list around the given input"""
     lis = sorted_list(Number_of_items)[::-1]
     return lis
 
