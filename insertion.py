@@ -1,6 +1,19 @@
 #! /usr/bin/env python
 
+import time
 
+
+def timed_func(func):
+    """Decorator for timing our traversal methods."""
+    def timed(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        elapsed = time.time() - start
+        print "time expired: %s" % elapsed
+        return result
+    return timed
+
+@timed_func
 def insertion_sort(lis):
     for x in xrange(len(lis)):
         i = x
@@ -10,8 +23,24 @@ def insertion_sort(lis):
     return lis
 
 
+def sorted_list(Number_of_items=100):
+    lis = []
+    for i in range(Number_of_items):
+        lis.append(i)
+    return lis
+
+
+def reverse_sorted_list(Number_of_items=100):
+    lis = sorted_list(Number_of_items)[::-1]
+    return lis
+
+
 if __name__ == '__main__':
-    l = [4, 3, 6, 8, 1 ,5]
-    print l
-    insertion_sort(l)
-    print l
+    print "sorted 100"
+    insertion_sort(sorted_list(100))
+    print "rever sorted 100"
+    insertion_sort(reverse_sorted_list(100))
+    print "sorted 1000"
+    insertion_sort(sorted_list(1000))
+    print "rever sorted 1000"
+    insertion_sort(reverse_sorted_list(1000))
