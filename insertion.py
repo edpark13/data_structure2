@@ -11,4 +11,7 @@ def insertion_sort(lis):
 
 
 if __name__ == '__main__':
-
+    l = [4, 3, 6, 8, 1 ,5]
+    print l
+    insertion_sort(l)
+    print l
