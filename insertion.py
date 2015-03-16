@@ -13,6 +13,7 @@ def timed_func(func):
         return result
     return timed
 
+
 @timed_func
 def insertion_sort(lis):
     """Sorts a given list using an insert method"""
