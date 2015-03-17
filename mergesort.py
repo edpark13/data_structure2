@@ -88,8 +88,9 @@ if __name__ == "__main__":
     print 'worst case Edward even/odd short'
     m = merge_sort_timer(m)
 
-    # For multiple testes values 100-30,000 the differences in time were not
-    # measureable.
+    # For multiple testes values 100-30,000 the differences is only marginal.
+    # For values over 30,000 the calcualtion is too time consuming.
+    # Relationship seems to be O(nlogn)
 
 
 
