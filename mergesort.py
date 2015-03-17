@@ -17,6 +17,7 @@ def timed_func(func):
 
 
 def merge_sort(l):
+    """Sorts a list using a simple merge sort implemetnation"""
     if len(l) <= 1:
         return l
     else:
@@ -30,6 +31,8 @@ def merge_sort(l):
 
 
 def merge(left, right):
+    """Combines two lists lowest to greates
+    is a stable merge method"""
     result = []
     while left and right:
         if left[0] <= right[0]:
@@ -58,6 +61,9 @@ def reverse_sorted_list(Number_of_items=100):
 
 
 def build_tree(number):
+    """Tried using a balanced search tree
+    data was not determinate for numbers smaller than
+    10,000 to time consuming over 10,000"""
     tree = Bst()
     for i in xrange(number):
         tree.insert(i)
@@ -73,18 +79,17 @@ def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
-    l = sorted_list(100)
+    l = sorted_list(30000)
     print 'sorted list'
     l = merge_sort_timer(l)
-    # print 'after sort' + str(l)
-    l = merge_sort_timer(reverse_sorted_list(100))
-    print 'worst case using balanced tree'
-    merge_sort_timer(build_tree(101))
-    m = makelist(100)
+    print 'reverse sorted list'
+    l = merge_sort_timer(reverse_sorted_list(30000))
+    m = makelist(30000)
     print 'worst case Edward even/odd short'
     m = merge_sort_timer(m)
 
-
+    # For multiple testes values 100-30,000 the differences in time were not
+    # measureable.
 
 
 
