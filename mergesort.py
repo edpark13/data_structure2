@@ -60,12 +60,12 @@ def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
-    l = sorted_list(100)
+    l = sorted_list(40000)
     # print 'before sort' + str(l)
     l = merge_sort_timer(l)
     # print 'after sort' + str(l)
-    l = merge_sort_timer(reverse_sorted_list(100))
-    m = makelist(100)
+    l = merge_sort_timer(reverse_sorted_list(40000))
+    m = makelist(40000)
     m = merge_sort_timer(m)
 
 
