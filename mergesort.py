@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import time
-
+from bst import Bst
 
 
 def timed_func(func):
@@ -55,16 +55,31 @@ def reverse_sorted_list(Number_of_items=100):
     return lis
 
 
+def build_tree(number):
+    tree = Bst()
+    for i in xrange(number):
+        tree.insert(i)
+    sorted_tree = tree.balance_self()
+    a = []
+    for i in sorted_tree.breadth_first():
+        a.append(i)
+    return a
+
+
 @timed_func
 def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
     l = sorted_list(100)
-    # print 'before sort' + str(l)
+    print 'sorted list'
     l = merge_sort_timer(l)
     print 'after sort' + str(l)
     l = merge_sort_timer(reverse_sorted_list(100))
+    print 'worst case using balanced tree'
+    merge_sort_timer(build_tree(101))
+
+
 
 
 
