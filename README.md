@@ -21,4 +21,15 @@ for input into a list. The hashing method is a sub module of the class
 and can be easily replaced with a more prefect method at a later time.
 
 Insertion Sort
-Given a list calling the insertion function will return the list but sorted from least to max. The main function will test the fastest case with is an pre ordered list but the slowest case where the list is ordered from max to least. When increasing from 100 to 1000 items the fastest case slowed 10 times because the number of items increased by 10 times and the slowest case increase by 100 times or 10^2.
+Given a list calling the insertion function will return the list but sorted
+from least to max. The main function will test the fastest case with is an
+pre ordered list but the slowest case where the list is ordered from max to
+least. When increasing from 100 to 1000 items the fastest case slowed 10 times
+because the number of items increased by 10 times and the slowest case
+increase by 100 times or 10^2.
+
+Merge Sort
+Sorts a list of values in order from least to greates. The sort method
+preserves stability. Method works on empty lists. For more information on
+merge sort refer to the following:
+http://en.wikipedia.org/wiki/Merge_sort
