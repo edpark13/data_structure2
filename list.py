@@ -13,12 +13,12 @@ def makeeven(num):
     # print 'l = ' + str(l)
     r = []
     while len(l) > 2:
-        a = l.pop(2)
-        b = l.pop(0)
+        a = l.pop(0)
+        b = l.pop(1)
         # print 'a = ' + str(a)
         # print 'b = ' + str(b)
-        r.append(a)
         r.append(b)
+        r.append(a)
     if len(l) % 2 == 0:
         r.append(l[1])
     r.append(l[0])
@@ -32,12 +32,12 @@ def makeodd(num):
             l.append(i)
     r = []
     while len(l) > 2:
-        a = l.pop(2)
-        b = l.pop(0)
+        a = l.pop(0)
+        b = l.pop(1)
         # print 'a = ' + str(a)
         # print 'b = ' + str(b)
-        r.append(a)
         r.append(b)
+        r.append(a)
     if len(l) % 2 == 0:
         r.append(l[1])
     r.append(l[0])
