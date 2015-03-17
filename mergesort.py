@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 import time
+from bst import Bst
 from list import makelist
+
 
 
 def timed_func(func):
@@ -15,6 +17,7 @@ def timed_func(func):
 
 
 def merge_sort(l):
+    """Sorts a list using a simple merge sort implemetnation"""
     if len(l) <= 1:
         return l
     else:
@@ -28,6 +31,8 @@ def merge_sort(l):
 
 
 def merge(left, right):
+    """Combines two lists lowest to greates
+    is a stable merge method"""
     result = []
     while left and right:
         if left[0] <= right[0]:
@@ -55,19 +60,37 @@ def reverse_sorted_list(Number_of_items=100):
     return lis
 
 
+def build_tree(number):
+    """Tried using a balanced search tree
+    data was not determinate for numbers smaller than
+    10,000 to time consuming over 10,000"""
+    tree = Bst()
+    for i in xrange(number):
+        tree.insert(i)
+    sorted_tree = tree.balance_self()
+    a = []
+    for i in sorted_tree.breadth_first():
+        a.append(i)
+    return a
+
+
 @timed_func
 def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
-    l = sorted_list(40000)
-    # print 'before sort' + str(l)
+    l = sorted_list(30000)
+    print 'sorted list'
     l = merge_sort_timer(l)
-    # print 'after sort' + str(l)
-    l = merge_sort_timer(reverse_sorted_list(40000))
-    m = makelist(40000)
+    print 'reverse sorted list'
+    l = merge_sort_timer(reverse_sorted_list(30000))
+    m = makelist(30000)
+    print 'worst case Edward even/odd short'
     m = merge_sort_timer(m)
 
+    # For multiple testes values 100-30,000 the differences is only marginal.
+    # For values over 30,000 the calcualtion is too time consuming.
+    # Relationship seems to be O(nlogn)
 
 
 

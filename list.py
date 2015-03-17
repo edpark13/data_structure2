@@ -4,6 +4,7 @@ def makelist(num):
     even.extend(odd)
     return even
 
+
 def makeeven(num):
     l = []
     for i in xrange(num):
@@ -22,6 +23,7 @@ def makeeven(num):
         r.append(l[1])
     r.append(l[0])
     return r
+
 
 def makeodd(num):
     l = []
