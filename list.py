@@ -42,4 +42,4 @@ def makeodd(num):
     return r
 
 if __name__ == "__main__":
-    print makelist(100)
+    print makelist(16)
