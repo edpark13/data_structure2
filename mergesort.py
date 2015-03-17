@@ -79,12 +79,12 @@ def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
-    l = sorted_list(30000)
+    l = sorted_list(70000)
     print 'sorted list'
     l = merge_sort_timer(l)
     print 'reverse sorted list'
-    l = merge_sort_timer(reverse_sorted_list(30000))
-    m = makeworstlist(30000)
+    l = merge_sort_timer(reverse_sorted_list(70000))
+    m = makeworstlist(70000)
     print 'worst case Edward even/odd short'
     m = merge_sort_timer(m)
 

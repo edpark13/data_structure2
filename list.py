@@ -36,4 +36,4 @@ def makeodd(l):
 
 
 if __name__ == "__main__":
-    print makeworstlist(16)
+    print makeworstlist(10)
