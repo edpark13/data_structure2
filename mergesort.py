@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import time
-
+from list import makelist
 
 
 def timed_func(func):
@@ -63,9 +63,10 @@ if __name__ == "__main__":
     l = sorted_list(100)
     # print 'before sort' + str(l)
     l = merge_sort_timer(l)
-    print 'after sort' + str(l)
+    # print 'after sort' + str(l)
     l = merge_sort_timer(reverse_sorted_list(100))
-
+    m = makelist(100)
+    m = merge_sort_timer(m)
 
 
 
