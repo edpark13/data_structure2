@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import time
 from bst import Bst
-from list import makelist
+from list import makeworstlist
 
 
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     l = merge_sort_timer(l)
     print 'reverse sorted list'
     l = merge_sort_timer(reverse_sorted_list(30000))
-    m = makelist(30000)
+    m = makeworstlist(30000)
     print 'worst case Edward even/odd short'
     m = merge_sort_timer(m)
 
