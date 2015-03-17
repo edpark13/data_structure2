@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 import time
 from bst import Bst
+from list import makelist
+
 
 
 def timed_func(func):
@@ -74,12 +76,13 @@ if __name__ == "__main__":
     l = sorted_list(100)
     print 'sorted list'
     l = merge_sort_timer(l)
-    print 'after sort' + str(l)
+    # print 'after sort' + str(l)
     l = merge_sort_timer(reverse_sorted_list(100))
     print 'worst case using balanced tree'
     merge_sort_timer(build_tree(101))
-
-
+    m = makelist(100)
+    print 'worst case Edward even/odd short'
+    m = merge_sort_timer(m)
 
 
 
