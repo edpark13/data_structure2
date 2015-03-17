@@ -1,47 +1,19 @@
 def makelist(num):
-    even = makeeven(num)
-    odd = makeodd(num)
-    even.extend(odd)
-    return even
-
-
-def makeeven(num):
     l = []
     for i in xrange(num):
-        if i % 2 == 0:
-            l.append(i)
-    # print 'l = ' + str(l)
-    r = []
-    while len(l) > 2:
-        a = l.pop(0)
-        b = l.pop(1)
-        # print 'a = ' + str(a)
-        # print 'b = ' + str(b)
-        r.append(b)
-        r.append(a)
-    if len(l) % 2 == 0:
-        r.append(l[1])
-    r.append(l[0])
-    return r
+        l.append(i)
+    left = l[:len(l)/2]
+    right = l[len(l)/2:]
+    final_list = []
+    while left and right:
+        final_list.append(right.pop(0))
+        final_list.append(left.pop(0))
+    while left:
+        final_list.append(left.pop(0))
+    while right:
+        final_list.append(right.pop(0))
+    return final_list
 
-
-def makeodd(num):
-    l = []
-    for i in xrange(num):
-        if i % 2 == 1:
-            l.append(i)
-    r = []
-    while len(l) > 2:
-        a = l.pop(0)
-        b = l.pop(1)
-        # print 'a = ' + str(a)
-        # print 'b = ' + str(b)
-        r.append(b)
-        r.append(a)
-    if len(l) % 2 == 0:
-        r.append(l[1])
-    r.append(l[0])
-    return r
 
 if __name__ == "__main__":
     print makelist(16)
