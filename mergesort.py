@@ -1,3 +1,19 @@
+#! /usr/bin/env python
+import time
+
+
+
+def timed_func(func):
+    """Decorator for timing our insertion sort methods."""
+    def timed(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        elapsed = time.time() - start
+        print "time expired: %s" % elapsed
+        return result
+    return timed
+
+
 def merge_sort(l):
     if len(l) <= 1:
         return l
@@ -9,6 +25,7 @@ def merge_sort(l):
         right = merge_sort(right)
 
     return merge(left, right)
+
 
 def merge(left, right):
     result = []
@@ -23,8 +40,35 @@ def merge(left, right):
         result.append(right.pop(0))
     return result
 
+
+def sorted_list(Number_of_items=100):
+    """Creats a list of numbers around the given input"""
+    lis = []
+    for i in range(Number_of_items):
+        lis.append(i)
+    return lis
+
+
+def reverse_sorted_list(Number_of_items=100):
+    """Creats a worst case list around the given input"""
+    lis = sorted_list(Number_of_items)[::-1]
+    return lis
+
+
+@timed_func
+def merge_sort_timer(l):
+    return merge_sort(l)
+
 if __name__ == "__main__":
-    l = [10, 2, 5, 1, 2, 4, 8, 6]
-    print 'before sort' + str(l)
-    l = merge_sort(l)
+    l = sorted_list(100)
+    # print 'before sort' + str(l)
+    l = merge_sort_timer(l)
     print 'after sort' + str(l)
+    l = merge_sort_timer(reverse_sorted_list(100))
+
+
+
+
+
+
+
