@@ -41,10 +41,10 @@ def reverse_sorted_list(Number_of_items=100):
 
 if __name__ == '__main__':
     print "sorted 100"
-    insertion_sort(sorted_list(100))
-    print "rever sorted 100"
-    insertion_sort(reverse_sorted_list(100))
-    print "sorted 1000"
     insertion_sort(sorted_list(1000))
-    print "rever sorted 1000"
+    print "rever sorted 100"
     insertion_sort(reverse_sorted_list(1000))
+    # print "sorted 1000"
+    # insertion_sort(sorted_list(1000))
+    # print "rever sorted 1000"
+    # insertion_sort(reverse_sorted_list(1000))
