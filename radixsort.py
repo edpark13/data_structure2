@@ -35,7 +35,7 @@ def radixsort(l):
 
 def radixsort_string(l):
     length = 0
-    result = []
+    result = [[] for p in xrange(0,26)]
     for word in l:
         if len(word) > length:
             length = len(word)
@@ -43,18 +43,20 @@ def radixsort_string(l):
     for i in xrange(0, length):
         ll = [[] for p in xrange(0,26)]
         for word in l:
-            lower_word = word.lower()
-            try:
+            if len(word) - 1 == i:
+                result[ord(word[0]) - 97].append(word)
+            else:
+                lower_word = word.lower()
                 ll[ord(lower_word[i]) - 97].append(word)
-            except IndexError:
-                result.append(word)
+
         l = []
         for j in xrange(26):
             l.extend(ll[j])
-        if i == length - 1:
-            result.extend(l)
+    l = []
+    for j in xrange(26):
+        l.extend(result[j])
 
-    return result
+    return l
 
 if __name__ == '__main__':
     randoml = random.sample(range(1000), 100)
