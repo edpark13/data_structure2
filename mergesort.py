@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import time
 from bst import Bst
+import random
 from list import makeworstlist
 
 
@@ -79,20 +80,21 @@ def merge_sort_timer(l):
     return merge_sort(l)
 
 if __name__ == "__main__":
-    l = sorted_list(1000)
-    print 'sorted list'
-    l = merge_sort_timer(l)
-    print 'reverse sorted list'
-    l = merge_sort_timer(reverse_sorted_list(1000))
-    m = makeworstlist(1000)
-    print 'worst case Edward even/odd short'
-    m = merge_sort_timer(m)
+    # l = sorted_list(1000)
+    # print 'sorted list'
+    # l = merge_sort_timer(l)
+    # print 'reverse sorted list'
+    # l = merge_sort_timer(reverse_sorted_list(1000))
+    # m = makeworstlist(1000)
+    # print 'worst case Edward even/odd short'
+    # m = merge_sort_timer(m)
 
     # For multiple testes values 100-30,000 the differences is only marginal.
     # For values over 30,000 the calcualtion is too time consuming.
     # Relationship seems to be O(nlogn)
 
-
+    randoml = random.sample(range(100000), 100000)
+    randoml = merge_sort_timer(randoml)
 
 
 

@@ -43,12 +43,18 @@ def random_quicksort_wrapper(l):
 
 def random_quicksort(l):
     if len(l) > 1:
-        l = l[:]
+        # l = l[:]
         rand = random.randint(0, len(l) - 1)
-        pivot = l.pop(rand)
+        # pivot = l.pop(rand)
+        pivot = l[rand]
         left = []
         right = []
-        for i in xrange(len(l)):
+        for i in xrange(rand):
+            if l[i] <= pivot:
+                left.append(l[i])
+            else:
+                right.append(l[i])
+        for i in xrange(rand + 1, len(l)):
             if l[i] <= pivot:
                 left.append(l[i])
             else:
@@ -76,7 +82,7 @@ def median_quicksort(l):
         pivotlist.append(l[0])
         pivotlist.append(l[len(l) - 1])
         pivotlist.append(l[len(l) / 2])
-        pivot = sorted(pivotlist)[1] # I do not want to sort a list of 3 vals to get a median
+        pivot = select_pivot(pivotlist)
         l.remove(pivot)
         left = []
         right = []
@@ -85,8 +91,8 @@ def median_quicksort(l):
                 left.append(l[i])
             else:
                 right.append(l[i])
-        sortedleft = random_quicksort(left)
-        sortedright = random_quicksort(right)
+        sortedleft = median_quicksort(left)
+        sortedright = median_quicksort(right)
 
         sortedleft.append(pivot)
         sortedleft.extend(sortedright)
@@ -95,11 +101,18 @@ def median_quicksort(l):
     else:
         return l  
 
+def select_pivot(l):
+    if l[0] <= l[1] <= l[2] or l[2] <= l[1] <= l[0]:
+        return l[1]
+    elif l[1] <= l[0] <= l[2] or l[2] <= l[0] <= l[1]:
+        return l[0]
+    else:
+        return l[2]
 
 if __name__ == "__main__":
     l = range(500)
     rl = l[::-1]
-    randoml = random.sample(range(70000), 70000)
+    randoml = random.sample(range(1000000), 1000000)
     # print "quickshort l"
     # quicksort_wrapper(l)
     # print "random quickshort l"
