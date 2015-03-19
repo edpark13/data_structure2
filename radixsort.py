@@ -35,13 +35,13 @@ def radixsort(l):
 
 def radixsort_string(l):
     length = 0
-    result = [[] for p in xrange(0,26)]
+    result = [[] for p in xrange(0, 26)]
     for word in l:
         if len(word) > length:
             length = len(word)
 
     for i in xrange(0, length):
-        ll = [[] for p in xrange(0,26)]
+        ll = [[] for p in xrange(0, 26)]
         for word in l:
             if len(word) - 1 == i:
                 result[ord(word[0]) - 97].append(word)
@@ -59,10 +59,10 @@ def radixsort_string(l):
     return l
 
 if __name__ == '__main__':
-    randoml = random.sample(range(1000), 100)
-    print radixsort(randoml)
-    print "Radix with sorted list"
-    sorted_list = sorted(randoml)
-    print radixsort(sorted_list)
-    l = ['asdf', 'u', 'a', 'bqwg', 'iuhjnewfsadfb']
+    # randoml = random.sample(range(1000), 100)
+    # print radixsort(randoml)
+    # print "Radix with sorted list"
+    # sorted_list = sorted(randoml)
+    # print radixsort(sorted_list)
+    l = ['asdf', 'u', 'a', 'bqwg', 'iuhjnewfsadfb', 'abba', 'abc']
     print radixsort_string(l)
