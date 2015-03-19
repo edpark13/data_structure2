@@ -54,5 +54,5 @@ if __name__ == '__main__':
     # print "Radix with sorted list"
     # sorted_list = sorted(randoml)
     # print radixsort(sorted_list)
-    l = ['asdf', 'u', 'a', 'bqwg', 'iuhjnewfsadfb']
+    l = ['asdf', 'u', 'a', 'bqwg', 'iuhjnewfsadfb', 'abba', 'abc']
     print radixsort_string(l)
