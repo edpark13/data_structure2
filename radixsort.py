@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import math
 import random
+import time
 
 
 def timed_func(func):
@@ -33,8 +34,9 @@ def radixsort(l):
 
 
 if __name__ == '__main__':
-    randoml = random.sample(range(100), 10)
+    randoml = random.sample(range(1000), 100)
     print radixsort(randoml)
+    print "Radix with sorted list"
     print radixsort(sorted(randoml))
 
 
