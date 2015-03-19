@@ -6,16 +6,16 @@ def radixsort(l):
     for i in xrange(1, digits+1):
         a = [[] for x in xrange(0, 10)]
         for x in l:
-            a[(x%10^i)//(10^(i-1))].append(x)
+            a[(x%10**i)//(10**(i-1))].append(x)
         l = []
         for i in xrange(10):
-            l.extend(a[i])
+            l += a[i]
     return l
 
 
 if __name__ == '__main__':
     import pdb
-    test = [3, 5, 289, 35, 90, 113]
+    test = [3, 5, 289, 35, 90, 113, 9000, 57464, 75]
     # pdb.set_trace()
     print radixsort(test)
     print sorted(test)
