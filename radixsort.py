@@ -33,29 +33,19 @@ def radixsort(l):
         return []
 
 
-def radixsort_string(l):
-    length = 0
-    result = [[] for p in xrange(0,26)]
-    for word in l:
-        if len(word) > length:
-            length = len(word)
-
-    for i in xrange(0, length):
-        ll = [[] for p in xrange(0,26)]
+def radixsort_string(l, index=0):
+    if len(l) > 2:
+        r = []
+        ll = [[] for i in xrange(26)]
         for word in l:
-            if len(word) - 1 == i:
-                result[ord(word[0]) - 97].append(word)
-            else:
+            if index < len(word):
                 lower_word = word.lower()
-                ll[ord(lower_word[i]) - 97].append(word)
-
-        l = []
-        for j in xrange(26):
-            l.extend(ll[j])
-    l = []
-    for j in xrange(26):
-        l.extend(result[j])
-
+                ll[ord(lower_word[index]) - 97].append(word)
+            else:
+                r.append(word)
+        for i in xrange(26):
+            r.extend(radixsort_string(ll[i], index+1))
+        return r
     return l
 
 if __name__ == '__main__':
