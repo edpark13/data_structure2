@@ -57,10 +57,10 @@ def radixsort_string(l):
     return result
 
 if __name__ == '__main__':
-    # randoml = random.sample(range(1000), 100)
-    # print radixsort(randoml)
-    # print "Radix with sorted list"
-    # sorted_list = sorted(randoml)
-    # print radixsort(sorted_list)
+    randoml = random.sample(range(1000), 100)
+    print radixsort(randoml)
+    print "Radix with sorted list"
+    sorted_list = sorted(randoml)
+    print radixsort(sorted_list)
     l = ['asdf', 'u', 'a', 'bqwg', 'iuhjnewfsadfb']
     print radixsort_string(l)
