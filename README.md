@@ -33,3 +33,6 @@ Sorts a list of values in order from least to greates. The sort method
 preserves stability. Method works on empty lists. For more information on
 merge sort refer to the following:
 http://en.wikipedia.org/wiki/Merge_sort
+
+Radix Sort
+Sort a list of values first by the 1's place then 10's place then 100's etc then put them back in the list in the order they are in the list. This method preserves stability and our method withs for empty lists.
