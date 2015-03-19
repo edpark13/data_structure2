@@ -37,6 +37,7 @@ if __name__ == '__main__':
     randoml = random.sample(range(1000), 100)
     print radixsort(randoml)
     print "Radix with sorted list"
-    print radixsort(sorted(randoml))
+    sorted_list = sorted(randoml)
+    print radixsort(sorted_list)
 
 
