@@ -34,6 +34,7 @@ def radixsort(l):
 
 
 def radixsort_string(l, index=0):
+    """Use radixsort for list of strings"""
     if len(l) > 2:
         r = []
         ll = [[] for i in xrange(26)]
@@ -49,6 +50,7 @@ def radixsort_string(l, index=0):
     return l
 
 if __name__ == '__main__':
+    """Best case all one letter/digit worst case very long strings/digits"""
     # randoml = random.sample(range(1000), 100)
     # print radixsort(randoml)
     # print "Radix with sorted list"
